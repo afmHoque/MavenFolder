@@ -1,0 +1,9 @@
+
+<suite name = "BNY Mellon">
+    <test name = "regression">
+        <classes>
+            <class name ="Tests.HomePageTest">
+            </class>
+        </classes>
+    </test>
+</suite>
