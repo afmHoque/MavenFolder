@@ -1,31 +1,46 @@
 package Tests;
 
-import Pages.HomePage;
+import Pages.HomePageSignOn;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 public class HomePageTest extends BaseTest {
 
-    HomePage homePage;
+    HomePageSignOn homePageSignOn;
 
     @BeforeMethod
-    void setUpHomePage() {
+    void setUpHomePage() throws IOException {
+
         setup();
-       driver.get("https://www.bnymellon.com");
-      //  driver.get("https://nexen.bnymellon.com/app/nxn/login");
-        homePage = PageFactory.initElements(driver, HomePage.class);
+       // setup("chrome");
+
+        driver.get("https://pnc.com");
+        homePageSignOn = PageFactory.initElements(driver, HomePageSignOn.class);
+    }
+
+    @Test
+    void testSignOnPage() {
+        homePageSignOn.clickOnSignPage();
+
+
+        homePageSignOn.clickSignOnToText();
+        String actualText = homePageSignOn.clickSignOnToText();
+        Assert.assertEquals(actualText, "Sign On to");
+       // Assert.assertEquals(true, "Sign On to");
 
     }
 
     @Test
-    public void access() {
-       // dismissAlert();
-        windowhandle();
-        homePage.nexen();
-        homePage.clickClintAccess();
-        homePage.enterValidUserId();
-        homePage.enterPassword();
-        }
-
+    void signInPncNegativeTestCases() throws IOException {
+        homePageSignOn.clickOnSignPage();
+        homePageSignOn.clickEnterUsrId();
+        homePageSignOn.enterPassword();
+        homePageSignOn.clickOnLogOnField();
+        screenshot();
     }
+}

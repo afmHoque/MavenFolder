@@ -1,5 +1,5 @@
 
-<suite name = "BNY Mellon">
+<suite name = "BankProject">
     <test name = "regression">
         <classes>
             <class name ="Tests.HomePageTest">
